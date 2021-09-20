@@ -11,6 +11,8 @@ namespace GreatestCommonDivisor
             Console.Write("b [Sample: 14]=");
             int b = int.Parse(Console.ReadLine());
             Console.WriteLine("Greatest Common Divisor [Sample: 7] = {0}", gcd(a, b)); // gcd = 7
+
+            Console.ReadKey();
         }
 
         // Рекурсивен метод за намиране на най-голям общ делител

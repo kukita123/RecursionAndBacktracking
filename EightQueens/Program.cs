@@ -46,7 +46,8 @@ namespace EightQueens
                 if (Place(board, i, col) == true)
                 {
                     board[i, col] = 1; // поставяме царица
-                    if (Solve(board, col + 1)) return true;
+                    if (Solve(board, col + 1))
+                        return true;
                     board[i, col] = 0; // махаме царицата
                 }
             }

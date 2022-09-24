@@ -1,203 +1,75 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+/*
+ Дадени са n на брой диска с различни диаметри и три стълба A, B и C. Дисковете са нанизани върху първия стълб по реда на 
+ намаляване на размера им и образуват кула. Трябва да се прехвърлят от първия стълб върху последния при спазване на 
+ следните правила:
+    1. При всеки ход може да бъде преместен един диск и този диск трябва да бъде най-горен за някой от стълбовете.
+    2. Диск с по-голям диаметър не може да бъде поставен върху такъв с по-малък.
+ */
 namespace HanoiTowers
 {
     class Program
     {
-        static int discs;
-        static List<string> solution;
-        static Stack<int> startTower = new Stack<int>();
-        static Stack<int> middleTower = new Stack<int>();
-        static Stack<int> endTower = new Stack<int>();
+        /*
+         Идеята е, че, за да преместим n на брой дискa от стълб A на стълб C, е необходимо да преместим n–1 диска 
+         от стълб A на стълб B, след което да преместим диска с номер n (който е най-големият измежду тях) 
+         от стълб A на стълб C и накрая да преместим останалите n–1 диска от стълб B на стълб C.
+        */
 
-        static void SolveHanoiTowers(int n, Stack<int> startRod, Stack<int> endRod, Stack<int> tempRod)
+        #region 1stWay-charRods
+        public static void DiskMove(int n, char a, char b)
         {
-            if (n >= 1)
-            {
-                SolveHanoiTowers(n - 1, startRod, tempRod, endRod);
-                endRod.Push(startRod.Pop());
-                PrintTowers();
-                SolveHanoiTowers(n - 1, tempRod, endRod, startRod);
-            }
+            Console.WriteLine("Преместете диск {0} от {1} на {2}.", n, a, b);
         }
 
-        static void PrintTowers()
+        public static void Hanoi1(char a, char c, char b, int numb)
         {
-            int[] startCopy = new int[startTower.Count];
-            startTower.CopyTo(startCopy, 0);
-            int[] middleCopy = new int[middleTower.Count];
-            middleTower.CopyTo(middleCopy, 0);
-            int[] endCopy = new int[endTower.Count];
-            endTower.CopyTo(endCopy, 0);
-
-            int startIndex = 0, middleIndex = 0, endIndex = 0;
-            for (int i = 0; i < discs + 2; i++)
+            if (numb == 1)
+                DiskMove(1, a, c);
+            else
             {
-                if (discs - startTower.Count() + 1 > i)
-                {
-                    Console.Write(new string(' ', discs));
-                    Console.Write("│");
-                    Console.Write(new string(' ', discs));
-                }
-                else if (startIndex < startCopy.Length)
-                {
-                    if (startCopy[startIndex] != discs)
-                    {
-                        Console.Write(new string(' ', discs - startCopy[startIndex]));
-                    }
-                    Console.Write("┌");
-                    if (startIndex != 0)
-                    {
-                        Console.Write('┴');
-                        Console.Write(new string('─', startCopy[startIndex] - 2));
-                        Console.Write('─');
-                        Console.Write(new string('─', startCopy[startIndex] - 2));
-                        Console.Write('┴');
-                    }
-                    else
-                    {
-                        Console.Write(new string('─', startCopy[startIndex] - 1));
-                        Console.Write('┴');
-                        Console.Write(new string('─', startCopy[startIndex] - 1));
-                    }
-                    Console.Write("┐");
-                    if (startCopy[startIndex] != discs)
-                    {
-                        Console.Write(new string(' ', discs - startCopy[startIndex]));
-                    }
-
-                    startIndex++;
-                }
-                else
-                {
-                    if (startIndex == startCopy.Length && startIndex != 0)
-                    {
-                        Console.Write(new string(' ', discs - startCopy.Last()));
-                        Console.Write("└");
-                        Console.Write(new string('─', startCopy.Last() * 2 - 1));
-                        Console.Write("┘");
-                        Console.Write(new string(' ', discs - startCopy.Last()));
-                    }
-                    else Console.Write(new string(' ', discs * 2 + 1));
-                }
-
-                if (discs - middleTower.Count() + 1 > i)
-                {
-                    Console.Write(new string(' ', discs));
-                    Console.Write("│");
-                    Console.Write(new string(' ', discs));
-                }
-                else if (middleIndex < middleCopy.Length)
-                {
-                    if (middleCopy[middleIndex] != discs)
-                    {
-                        Console.Write(new string(' ', discs - middleCopy[middleIndex]));
-                    }
-                    Console.Write("┌");
-                    if (middleIndex != 0)
-                    {
-                        Console.Write('┴');
-                        Console.Write(new string('─', middleCopy[middleIndex] - 2));
-                        Console.Write('─');
-                        Console.Write(new string('─', middleCopy[middleIndex] - 2));
-                        Console.Write('┴');
-                    }
-                    else
-                    {
-                        Console.Write(new string('─', middleCopy[middleIndex] - 1));
-                        Console.Write('┴');
-                        Console.Write(new string('─', middleCopy[middleIndex] - 1));
-                    }
-                    Console.Write("┐");
-                    if (middleCopy[middleIndex] != discs)
-                    {
-                        Console.Write(new string(' ', discs - middleCopy[middleIndex]));
-                    }
-
-                    middleIndex++;
-                }
-                else
-                {
-                    if (middleIndex == middleCopy.Length && middleIndex != 0)
-                    {
-                        Console.Write(new string(' ', discs - middleCopy.Last()));
-                        Console.Write("└");
-                        Console.Write(new string('─', middleCopy.Last() * 2 - 1));
-                        Console.Write("┘");
-                        Console.Write(new string(' ', discs - middleCopy.Last()));
-                    }
-                    else Console.Write(new string(' ', discs * 2 + 1));
-                }
-
-                if (discs - endTower.Count() + 1 > i)
-                {
-                    Console.Write(new string(' ', discs));
-                    Console.Write("│");
-                    Console.Write(new string(' ', discs));
-                }
-                else if (endIndex < endCopy.Length)
-                {
-                    if (endCopy[endIndex] != discs)
-                    {
-                        Console.Write(new string(' ', discs - endCopy[endIndex]));
-                    }
-                    Console.Write("┌");
-                    if (endIndex != 0)
-                    {
-                        Console.Write('┴');
-                        Console.Write(new string('─', endCopy[endIndex] - 2));
-                        Console.Write('─');
-                        Console.Write(new string('─', endCopy[endIndex] - 2));
-                        Console.Write('┴');
-                    }
-                    else
-                    {
-                        Console.Write(new string('─', endCopy[endIndex] - 1));
-                        Console.Write('┴');
-                        Console.Write(new string('─', endCopy[endIndex] - 1));
-                    }
-                    Console.Write("┐");
-                    if (endCopy[endIndex] != discs)
-                    {
-                        Console.Write(new string(' ', discs - endCopy[endIndex]));
-                    }
-
-                    endIndex++;
-                }
-                else
-                {
-                    if (endIndex == endCopy.Length && endIndex != 0)
-                    {
-                        Console.Write(new string(' ', discs - endCopy.Last()));
-                        Console.Write("└");
-                        Console.Write(new string('─', endCopy.Last() * 2 - 1));
-                        Console.Write("┘");
-                        Console.Write(new string(' ', discs - endCopy.Last()));
-                    }
-                    else Console.Write(new string(' ', discs * 2 + 1));
-                }
-
-                Console.WriteLine();
+                Hanoi1(a, b, c, numb - 1);
+                DiskMove(numb, a, c);
+                Hanoi1(b, c, a, numb - 1);
             }
         }
+        #endregion
+
+        #region 2ndWay-intRods
+        public static void PrintMove(int start, int end)
+        {
+            Console.WriteLine(start + " -> " + end);
+        }
+
+        public static void Hanoi2(int n, int start, int end)
+        {
+            //Base case:
+            if (n == 1)
+                PrintMove(start, end);
+            else
+            {
+                int middle = 6 - (start + end);  // because 1+2+3=6 => middle=6-(1+3)=6-4=2
+                Hanoi2(n - 1, start, middle);
+                PrintMove(start, end);
+                Hanoi2(n - 1, middle, end);
+            }
+
+        }
+        #endregion
 
         static void Main(string[] args)
         {
-            solution = new List<string>();
+            Console.Write("Discs number: ");
+            int discs = int.Parse(Console.ReadLine());
 
-            discs = int.Parse(Console.ReadLine());
-            for (int i = discs; i > 0; i--)
-            {
-                startTower.Push(i);
-            }
+            #region CharNamedRods-Apply
+            //Console.WriteLine("Char named rods:");
+            //Hanoi1('A','B','C',discs);
+            #endregion
 
-            PrintTowers();
-            SolveHanoiTowers(discs, startTower, endTower, middleTower);
-
+            Console.WriteLine();
+            Console.WriteLine("Moves from disc to disc:");
+            Hanoi2(discs, 1, 3);
             Console.ReadKey();
         }
     }

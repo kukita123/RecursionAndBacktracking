@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeastCommonMultiple
 {
@@ -46,6 +42,15 @@ namespace LeastCommonMultiple
                 a = r;
             }
             return a;
+        }
+
+        //Рекурсивен метод за намиране на най-голям общелител чрез остатък от деление:
+        private static int gcd3(int a, int b)
+        {
+            if (b == 0)
+                return a;
+            else
+                return gcd3(b, a % b);
         }
     }
 }

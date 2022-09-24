@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazePaths", "MazePaths\Maze
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HanoiTowers", "HanoiTowers\HanoiTowers.csproj", "{FCD91F4C-7928-4F8E-9B87-CCDFA1FACA10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrogProblem", "FrogProblem\FrogProblem.csproj", "{9B5B9F25-DCCC-413B-8035-95C59F7686EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombinatoricsAlgos", "CombinatoricsAlgos\CombinatoricsAlgos.csproj", "{2BC960FF-9FA7-4A47-A39E-1CBA903BF522}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{FCD91F4C-7928-4F8E-9B87-CCDFA1FACA10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCD91F4C-7928-4F8E-9B87-CCDFA1FACA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCD91F4C-7928-4F8E-9B87-CCDFA1FACA10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B5B9F25-DCCC-413B-8035-95C59F7686EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5B9F25-DCCC-413B-8035-95C59F7686EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5B9F25-DCCC-413B-8035-95C59F7686EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5B9F25-DCCC-413B-8035-95C59F7686EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BC960FF-9FA7-4A47-A39E-1CBA903BF522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BC960FF-9FA7-4A47-A39E-1CBA903BF522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC960FF-9FA7-4A47-A39E-1CBA903BF522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BC960FF-9FA7-4A47-A39E-1CBA903BF522}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
